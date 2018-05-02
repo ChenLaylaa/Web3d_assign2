@@ -16,10 +16,15 @@ var r36 = (36 * pi) / 180;
 var r72 = (72 * pi) / 180;
 //vertices of torso
 torso.vertices.push(new THREE.Vector3(Math.cos(r36),0,Math.sin(r36)));
-torso.vertices.push(new THREE.Vector3(- Math.cos(r72),0,Math.sin(r72)));
+torso.vertices.push(new THREE.Vector3(-Math.cos(r72),0,Math.sin(r72)));
 torso.vertices.push(new THREE.Vector3(-1,0,0));
+<<<<<<< HEAD
 torso.vertices.push(new THREE.Vector3(- Math.cos(r72),0,- Math.sin(r72)));
 torso.vertices.push(new THREE.Vector3(- Math.cos(Math.cos(r36),0,- Math.sin(r36))));
+=======
+torso.vertices.push(new THREE.Vector3(-Math.cos(r72),0,-Math.sin(r72)));
+torso.vertices.push(new THREE.Vector3(Math.cos(r36),0,-Math.sin(r36)));
+>>>>>>> 808a4bde22009e5e3aff4397cb5035dda3c2ecc9
 torso.vertices.push(new THREE.Vector3(0,0.5,0));
 torso.vertices.push(new THREE.Vector3(0,-0.5,0));
 //faces of torso
@@ -68,6 +73,8 @@ var axes = new THREE.AxesHelper(5);
 var axes2 = new THREE.AxesHelper(5);
 object.add(axes);
 object2.add(axes2);
+
+
 
 
 camera.position.z = 5;
