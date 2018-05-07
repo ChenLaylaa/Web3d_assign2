@@ -2,6 +2,7 @@
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
+camera.position.z = 5;
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -14,13 +15,14 @@ var pi = Math.PI;
 var r36 = (36 * pi) / 180;
 var r72 = (72 * pi) / 180;
 //vertices of torso
-torso.vertices.push(new THREE.Vector3(Math.cos(r36),0,Math.sin(r36)));
-torso.vertices.push(new THREE.Vector3(- Math.cos(r72),0,Math.sin(r72)));
 torso.vertices.push(new THREE.Vector3(-1,0,0));
+torso.vertices.push(new THREE.Vector3(- Math.cos(r72),0,Math.sin(r72)));
+torso.vertices.push(new THREE.Vector3(Math.cos(r36),0,Math.sin(r36)));
+torso.vertices.push(new THREE.Vector3(Math.cos(r36),0,- Math.sin(r36)));
 torso.vertices.push(new THREE.Vector3(- Math.cos(r72),0,- Math.sin(r72)));
-torso.vertices.push(new THREE.Vector3(- Math.cos(Math.cos(r36),0,- Math.sin(r36))));
 torso.vertices.push(new THREE.Vector3(0,0.5,0));
 torso.vertices.push(new THREE.Vector3(0,-0.5,0));
+
 //faces of torso
 torso.faces.push(new THREE.Face3(1,0,5));
 torso.faces.push(new THREE.Face3(0,4,5));
@@ -53,6 +55,9 @@ head.faces.push(new THREE.Face3(3,5,2));
 head.faces.push(new THREE.Face3(0,1,5));
 
 
+//front leg
+
+
 var material = new THREE.MeshBasicMaterial({color:0x00ff00});
 var object = new THREE.Mesh(torso, material);
 var object2 = new THREE.Mesh(head, material);
@@ -67,8 +72,22 @@ var axes2 = new THREE.AxesHelper(5);
 object.add(axes);
 object2.add(axes2);
 
-
-camera.position.z = 5;
+object.material.wireframe = true;
 
 //render the scene
 renderer.render(scene,camera);
+
+
+var controls = new THREE.TrackballControls(camera);
+controls.addEventListener('change', render);
+animate();
+
+function render() {
+    renderer.render(scene, camera);
+}
+
+function animate() {
+    render();
+    requestAnimationFrame(animate);
+    controls.update();
+}
