@@ -18,6 +18,7 @@ createTorso();
 createHead();
 createFLLeg();
 createFRLeg();
+createRRLeg();
 
 render();
 
@@ -70,6 +71,7 @@ function createTorso(){
   var material = new THREE.MeshBasicMaterial({color:0x00ff00});
   var torso = new THREE.Mesh(torso, material);
   material.side = THREE.DoubleSide;
+  //material.wireframe = true;
   scene.add(torso);
 
   var axes = createAxes(10);
@@ -108,6 +110,8 @@ function createHead(){
   head.add(axes);
 
   head.position.set(1.309, 0, 0);
+
+  
 
 }
 
@@ -233,7 +237,7 @@ FRLowLeg.faces.push(new THREE.Face3(4,3,2));
 FRLowLeg.faces.push(new THREE.Face3(3,5,2));
 FRLowLeg.faces.push(new THREE.Face3(0,1,5));
 
-//front left foot
+//front right foot
 var FRFoot = new THREE.Geometry();
 var v1 = new THREE.Vector3(0,0,0);
 var v2 = new THREE.Vector3(0.5,0,0.25);
@@ -272,5 +276,69 @@ scene.add(FRFoot);
 FRUpLeg.add(createAxes(10));
 FRLowLeg.add(createAxes(10));
 FRFoot.add(createAxes(10));
+
+}
+
+function createRRLeg(){
+
+  //rear right leg
+  var RRUpLeg = new THREE.Geometry();
+  RRUpLeg.vertices.push(new THREE.Vector3(-0.5,0,0));
+  RRUpLeg.vertices.push(new THREE.Vector3(0,0,0.25));
+  RRUpLeg.vertices.push(new THREE.Vector3(0.5,0,0));
+  RRUpLeg.vertices.push(new THREE.Vector3(0,0,-0.25));
+  RRUpLeg.vertices.push(new THREE.Vector3(0,0.25,0));
+  RRUpLeg.vertices.push(new THREE.Vector3(0,-0.25,0));
+
+  //faces for right leg
+  RRUpLeg.faces.push(new THREE.Face3(0,1,4));
+  RRUpLeg.faces.push(new THREE.Face3(4,1,2));
+  RRUpLeg.faces.push(new THREE.Face3(1,5,2));
+  RRUpLeg.faces.push(new THREE.Face3(1,0,5));
+  RRUpLeg.faces.push(new THREE.Face3(0,3,4));
+  RRUpLeg.faces.push(new THREE.Face3(4,3,2));
+  RRUpLeg.faces.push(new THREE.Face3(3,5,2));
+  RRUpLeg.faces.push(new THREE.Face3(0,1,5));
+
+  //rear right knee
+  var RRLowLeg = new THREE.Geometry();
+  RRLowLeg.vertices.push(new THREE.Vector3(-0.5,0,0));
+  RRLowLeg.vertices.push(new THREE.Vector3(0,0,0.25));
+  RRLowLeg.vertices.push(new THREE.Vector3(0.5,0,0));
+  RRLowLeg.vertices.push(new THREE.Vector3(0,0,-0.25));
+  RRLowLeg.vertices.push(new THREE.Vector3(0,0.25,0));
+  RRLowLeg.vertices.push(new THREE.Vector3(0,-0.25,0));
+
+  //faces for right knee
+  RRLowLeg.faces.push(new THREE.Face3(0,1,4));
+  RRLowLeg.faces.push(new THREE.Face3(4,1,2));
+  RRLowLeg.faces.push(new THREE.Face3(1,5,2));
+  RRLowLeg.faces.push(new THREE.Face3(1,0,5));
+  RRLowLeg.faces.push(new THREE.Face3(0,3,4));
+  RRLowLeg.faces.push(new THREE.Face3(4,3,2));
+  RRLowLeg.faces.push(new THREE.Face3(3,5,2));
+  RRLowLeg.faces.push(new THREE.Face3(0,1,5));
+
+  var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+  var RRUpLeg= new THREE.Mesh(RRUpLeg, material);
+  var RRLowLeg = new THREE.Mesh(RRLowLeg, material);
+
+  RRUpLeg.position.set(-1, 0, 0.5);
+  RRLowLeg.position.set(-1, -0.3535, 0.5);
+  //RRLowLeg.position.set(-1.1465, -0.3535,0);
+
+  RRUpLeg.rotation.y = -1.57;
+  RRLowLeg.rotation.y = -1.57;
+  RRLowLeg.position.y = -0.6465;
+//  RRLowLeg.position.x = -0.35;
+  RRLowLeg.rotation.z = 3.925;
+
+  material.side = THREE.DoubleSide;
+//  material.wireframe = true;
+
+  scene.add(RRUpLeg);
+  scene.add(RRLowLeg);
+  RRUpLeg.add(createAxes(10));
+  RRLowLeg.add(createAxes(10));
 
 }
