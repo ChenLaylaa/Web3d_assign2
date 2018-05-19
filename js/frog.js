@@ -17,6 +17,7 @@ createFLLeg();
 createFRLeg();
 createBLLeg();
 createBRLeg();
+createEyes();
 
 render();
 
@@ -480,4 +481,61 @@ RRToes_obj.add(createAxes(10));
 
 }
 
+function createEyes() {
 
+var pi = Math.PI
+var r30 = (30 * pi)/180
+
+//LeftEye
+var LeftEye = new THREE.Geometry()
+LeftEye.vertices.push(new THREE.Vector3(0,0,0.1)); 
+LeftEye.vertices.push(new THREE.Vector3(-0.1,0,0));
+LeftEye.vertices.push(new THREE.Vector3(0,0,-0.1));
+LeftEye.vertices.push(new THREE.Vector3(0.1,0,0));
+LeftEye.vertices.push(new THREE.Vector3(0,0.1,0));
+LeftEye.vertices.push(new THREE.Vector3(0,-0.1,0));
+
+LeftEye.faces.push(new THREE.Face3(0,1,4));
+LeftEye.faces.push(new THREE.Face3(2,1,4));
+LeftEye.faces.push(new THREE.Face3(2,3,4));
+LeftEye.faces.push(new THREE.Face3(3,4,0));
+LeftEye.faces.push(new THREE.Face3(0,1,5));
+LeftEye.faces.push(new THREE.Face3(2,1,5));
+LeftEye.faces.push(new THREE.Face3(2,3,5));
+LeftEye.faces.push(new THREE.Face3(0,3,5));
+
+//RightEye
+var RightEye = new THREE.Geometry()
+RightEye.vertices.push(new THREE.Vector3(0,0,0.1)); 
+RightEye.vertices.push(new THREE.Vector3(-0.1,0,0));
+RightEye.vertices.push(new THREE.Vector3(0,0,-0.1));
+RightEye.vertices.push(new THREE.Vector3(0.1,0,0));
+RightEye.vertices.push(new THREE.Vector3(0,0.1,0));
+RightEye.vertices.push(new THREE.Vector3(0,-0.1,0));
+
+RightEye.faces.push(new THREE.Face3(0,1,4));
+RightEye.faces.push(new THREE.Face3(2,1,4));
+RightEye.faces.push(new THREE.Face3(2,3,4));
+RightEye.faces.push(new THREE.Face3(3,4,0));
+RightEye.faces.push(new THREE.Face3(0,1,5));
+RightEye.faces.push(new THREE.Face3(2,1,5));
+RightEye.faces.push(new THREE.Face3(2,3,5));
+RightEye.faces.push(new THREE.Face3(0,3,5));
+
+
+
+var material = new THREE.MeshBasicMaterial({color: 0x000000});
+var LeftEye_obj = new THREE.Mesh(LeftEye,material)
+var RightEye_obj = new THREE.Mesh(RightEye,material)
+
+LeftEye_obj.position.set(Math.cos(r30)+0.75,0,-0.19)
+RightEye_obj.position.set(Math.cos(r30)+0.75,0,0.19)
+
+material.side = THREE.DoubleSide;
+
+
+scene.add(LeftEye_obj);
+scene.add(RightEye_obj);
+
+
+}
