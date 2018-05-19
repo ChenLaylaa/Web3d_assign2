@@ -1,7 +1,4 @@
-/*
- * cube.js
- * A simple Three.js program which draws a cube
- */
+
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -18,6 +15,8 @@ createTorso();
 createHead();
 createFLLeg();
 createFRLeg();
+createBLLeg();
+createBRLeg();
 
 render();
 
@@ -274,3 +273,211 @@ FRLowLeg.add(createAxes(10));
 FRFoot.add(createAxes(10));
 
 }
+
+
+//BLLeg
+function createBLLeg() {
+
+var pi = Math.PI;
+var r45 = (45 * pi) /180;
+
+
+
+//RLUpLeg
+var RLUpLeg = new THREE.Geometry()
+RLUpLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
+RLUpLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
+RLUpLeg.vertices.push(new THREE.Vector3(0.5, 0, 0));
+RLUpLeg.vertices.push(new THREE.Vector3(0, 0, -0.25));
+RLUpLeg.vertices.push(new THREE.Vector3(0, 0.25, 0));
+RLUpLeg.vertices.push(new THREE.Vector3(0, -0.25, 0));
+
+RLUpLeg.faces.push(new THREE.Face3(0, 1, 4));
+RLUpLeg.faces.push(new THREE.Face3(1, 2, 4));
+RLUpLeg.faces.push(new THREE.Face3(3, 2, 4));
+RLUpLeg.faces.push(new THREE.Face3(0, 3, 4));
+RLUpLeg.faces.push(new THREE.Face3(0, 1, 5));
+RLUpLeg.faces.push(new THREE.Face3(1, 2, 5));
+RLUpLeg.faces.push(new THREE.Face3(3, 2, 5));
+RLUpLeg.faces.push(new THREE.Face3(0, 3, 5));
+
+
+//RLLowLeg
+var RLLowLeg = new THREE.Geometry()
+RLLowLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
+RLLowLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
+RLLowLeg.vertices.push(new THREE.Vector3(0.5, 0, 0));
+RLLowLeg.vertices.push(new THREE.Vector3(0, 0, -0.25));
+RLLowLeg.vertices.push(new THREE.Vector3(0, 0.25, 0));
+RLLowLeg.vertices.push(new THREE.Vector3(0, -0.25, 0));
+
+RLLowLeg.faces.push(new THREE.Face3(0, 1, 4));
+RLLowLeg.faces.push(new THREE.Face3(1, 2, 4));
+RLLowLeg.faces.push(new THREE.Face3(3, 2, 4));
+RLLowLeg.faces.push(new THREE.Face3(0, 3, 4));
+RLLowLeg.faces.push(new THREE.Face3(0, 1, 5));
+RLLowLeg.faces.push(new THREE.Face3(1, 2, 5));
+RLLowLeg.faces.push(new THREE.Face3(3, 2, 5));
+RLLowLeg.faces.push(new THREE.Face3(0, 3, 5));
+
+//RLFoot
+var RLFoot = new THREE.Geometry()
+RLFoot.vertices.push(new THREE.Vector3(-0.5, 0, 0));
+RLFoot.vertices.push(new THREE.Vector3(0, 0, 0.25));
+RLFoot.vertices.push(new THREE.Vector3(0.5, 0, 0));
+RLFoot.vertices.push(new THREE.Vector3(0, 0, -0.25));
+RLFoot.vertices.push(new THREE.Vector3(0, 0.25, 0));
+RLFoot.vertices.push(new THREE.Vector3(0, -0.25, 0));
+
+RLFoot.faces.push(new THREE.Face3(0, 1, 4));
+RLFoot.faces.push(new THREE.Face3(1, 2, 4));
+RLFoot.faces.push(new THREE.Face3(3, 2, 4));
+RLFoot.faces.push(new THREE.Face3(0, 3, 4));
+RLFoot.faces.push(new THREE.Face3(0, 1, 5));
+RLFoot.faces.push(new THREE.Face3(1, 2, 5));
+RLFoot.faces.push(new THREE.Face3(3, 2, 5));
+RLFoot.faces.push(new THREE.Face3(0, 3, 5));
+
+//RLToes
+var RLToes = new THREE.Geometry()
+RLToes.vertices.push(new THREE.Vector3(0,0,0));
+RLToes.vertices.push(new THREE.Vector3(0.5,0,0.25));
+RLToes.vertices.push(new THREE.Vector3(0.5,0,-0.25));
+
+RLToes.faces.push(new THREE.Face3(0,1,2));
+
+
+var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+var RLUpLeg_obj = new THREE.Mesh(RLUpLeg, material);
+var RLLowLeg_obj = new THREE.Mesh(RLLowLeg, material);
+var RLFoot_obj = new THREE.Mesh(RLFoot,material);
+var RLToes_obj = new THREE.Mesh(RLToes,material);
+
+RLUpLeg_obj.position.set(-1, 0, -0.5);
+RLLowLeg_obj.position.set(-1, -Math.cos(r45)*0.5, -1+Math.cos(r45)*0.5);
+RLFoot_obj.position.set(-1,-Math.cos(r45),-1.5+Math.cos(r45));
+RLToes_obj.position.set(-1,-Math.cos(r45),-2+Math.cos(r45));
+
+
+
+RLUpLeg_obj.rotation.y = pi/2;
+RLLowLeg_obj.rotation.y = pi/2;
+RLLowLeg_obj.rotation.z = pi/2;
+RLLowLeg_obj.rotation.x = -pi/4;
+RLFoot_obj.rotation.y = pi/2;
+
+material.side = THREE.DoubleSide;
+
+scene.add(RLUpLeg_obj);
+scene.add(RLLowLeg_obj);
+scene.add(RLFoot_obj);
+scene.add(RLToes_obj);
+
+RLUpLeg_obj.add(createAxes(10));
+RLLowLeg_obj.add(createAxes(10));
+RLFoot_obj.add(createAxes(10));
+RLToes_obj.add(createAxes(10));
+}
+
+//BRLeg
+function createBRLeg(){
+
+var pi = Math.PI
+var r45 = (45 * pi)/180
+
+
+//RRUpLeg
+var RRUpLeg = new THREE.Geometry()
+RRUpLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
+RRUpLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
+RRUpLeg.vertices.push(new THREE.Vector3(0.5, 0, 0));
+RRUpLeg.vertices.push(new THREE.Vector3(0, 0, -0.25));
+RRUpLeg.vertices.push(new THREE.Vector3(0, 0.25, 0));
+RRUpLeg.vertices.push(new THREE.Vector3(0, -0.25, 0));
+
+RRUpLeg.faces.push(new THREE.Face3(0, 1, 4));
+RRUpLeg.faces.push(new THREE.Face3(1, 2, 4));
+RRUpLeg.faces.push(new THREE.Face3(3, 2, 4));
+RRUpLeg.faces.push(new THREE.Face3(0, 3, 4));
+RRUpLeg.faces.push(new THREE.Face3(0, 1, 5));
+RRUpLeg.faces.push(new THREE.Face3(1, 2, 5));
+RRUpLeg.faces.push(new THREE.Face3(3, 2, 5));
+RRUpLeg.faces.push(new THREE.Face3(0, 3, 5));
+
+//RRLowLeg
+var RRLowLeg = new THREE.Geometry()
+RRLowLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
+RRLowLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
+RRLowLeg.vertices.push(new THREE.Vector3(0.5, 0, 0));
+RRLowLeg.vertices.push(new THREE.Vector3(0, 0, -0.25));
+RRLowLeg.vertices.push(new THREE.Vector3(0, 0.25, 0));
+RRLowLeg.vertices.push(new THREE.Vector3(0, -0.25, 0));
+
+RRLowLeg.faces.push(new THREE.Face3(0, 1, 4));
+RRLowLeg.faces.push(new THREE.Face3(1, 2, 4));
+RRLowLeg.faces.push(new THREE.Face3(3, 2, 4));
+RRLowLeg.faces.push(new THREE.Face3(0, 3, 4));
+RRLowLeg.faces.push(new THREE.Face3(0, 1, 5));
+RRLowLeg.faces.push(new THREE.Face3(1, 2, 5));
+RRLowLeg.faces.push(new THREE.Face3(3, 2, 5));
+RRLowLeg.faces.push(new THREE.Face3(0, 3, 5));
+
+//RRFoot
+var RRFoot = new THREE.Geometry()
+RRFoot.vertices.push(new THREE.Vector3(-0.5, 0, 0));
+RRFoot.vertices.push(new THREE.Vector3(0, 0, 0.25));
+RRFoot.vertices.push(new THREE.Vector3(0.5, 0, 0));
+RRFoot.vertices.push(new THREE.Vector3(0, 0, -0.25));
+RRFoot.vertices.push(new THREE.Vector3(0, 0.25, 0));
+RRFoot.vertices.push(new THREE.Vector3(0, -0.25, 0));
+
+RRFoot.faces.push(new THREE.Face3(0, 1, 4));
+RRFoot.faces.push(new THREE.Face3(1, 2, 4));
+RRFoot.faces.push(new THREE.Face3(3, 2, 4));
+RRFoot.faces.push(new THREE.Face3(0, 3, 4));
+RRFoot.faces.push(new THREE.Face3(0, 1, 5));
+RRFoot.faces.push(new THREE.Face3(1, 2, 5));
+RRFoot.faces.push(new THREE.Face3(3, 2, 5));
+RRFoot.faces.push(new THREE.Face3(0, 3, 5));
+
+//RRToes
+var RRToes = new THREE.Geometry()
+RRToes.vertices.push(new THREE.Vector3(0,0,0));
+RRToes.vertices.push(new THREE.Vector3(0.5,0,0.25));
+RRToes.vertices.push(new THREE.Vector3(0.5,0,-0.25));
+
+RRToes.faces.push(new THREE.Face3(0,1,2));
+
+
+
+var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+var RRUpLeg_obj = new THREE.Mesh(RRUpLeg, material);
+var RRLowLeg_obj = new THREE.Mesh(RRLowLeg, material);
+var RRFoot_obj = new THREE.Mesh(RRFoot, material);
+var RRToes_obj = new THREE.Mesh(RRToes, material);
+
+
+material.side = THREE.DoubleSide;
+
+RRUpLeg_obj.position.set(-1,0,0.5);
+RRLowLeg_obj.position.set(-1,-Math.cos(r45)*0.5,1-Math.cos(r45)*0.5);
+RRFoot_obj.position.set(-1,-Math.cos(r45),1.5-Math.cos(r45));
+RRToes_obj.position.set(-1,-Math.cos(r45),2-Math.cos(r45));
+
+RRUpLeg_obj.rotation.y = pi/2;
+RRLowLeg_obj.rotation.y = pi/2;
+RRLowLeg_obj.rotation.x = 3*pi/4;
+RRFoot_obj.rotation.y = pi/2;
+
+scene.add(RRUpLeg_obj);
+scene.add(RRLowLeg_obj);
+scene.add(RRFoot_obj);
+scene.add(RRToes_obj);
+RRUpLeg_obj.add(createAxes(10));
+RRLowLeg_obj.add(createAxes(10));
+RRFoot_obj.add(createAxes(10));
+RRToes_obj.add(createAxes(10));
+
+}
+
+
