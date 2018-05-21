@@ -11,9 +11,13 @@ renderer.setClearColor(0x404040, 1);
 document.body.appendChild(renderer.domElement);
 
 //frog scene graph
-var material = new THREE.MeshBasicMaterial({color:0x00ff00});
-var eyes_material = new THREE.MeshBasicMaterial({color:0x000000});
-createFrog(material,eyes_material);
+
+
+createFilledMode();
+
+
+
+
 render();
 
 var controls = new THREE.TrackballControls(camera);
