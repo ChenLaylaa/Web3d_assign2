@@ -1,3 +1,4 @@
+"use strict"
 /**
  * Create and return a set of axes
  */
