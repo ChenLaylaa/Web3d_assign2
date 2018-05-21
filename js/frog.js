@@ -1,40 +1,7 @@
 "use strict"
 
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-camera.position.z = 5;
 
-//var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x404040, 1);
-document.body.appendChild(renderer.domElement);
-
-//frog scene graph
-
-
-createFilledMode();
-
-
-
-
-render();
-
-var controls = new THREE.TrackballControls(camera);
-controls.addEventListener('change', render);
-animate();
-
-function render() {
-    renderer.render(scene, camera);
-}
-
-function animate() {
-    render();
-    requestAnimationFrame(animate);
-    controls.update();
-}
-
-function createTorso(){
+function createTorso(material,scene){
 
   //torso
   var torso = new THREE.Geometry();
@@ -72,7 +39,7 @@ function createTorso(){
 
 
   //UV coordinates for texture mapping
-
+/* **
  var UVs = [
 	new THREE.Vector2(0,0.5),
     new THREE.Vector2(0.5-Math.cos(r72)*0.5,Math.sin(r72)*0.5+0.5),
@@ -80,7 +47,7 @@ function createTorso(){
 	new THREE.Vector2(0.5+Math.cos(r36)*0.5,0.5-Math.sin(r36)*0.5),
     new THREE.Vector2(0.5-Math.cos(r72)*0.5,0.5-Math.sin(r72)*0.5),
 	new THREE.Vector2(0.5,0.5)
-];
+];**/
 
 /* **
  var UVs = [
@@ -96,6 +63,7 @@ function createTorso(){
 
 
  //set torso UV coordinates
+/* **
 var a = new Array(UVs[0],UVs[1],UVs[5]);
 torso.faceVertexUvs[0].push(a);
 a = new Array(UVs[1],UVs[5],UVs[2]);
@@ -123,7 +91,9 @@ torso.uvsNeedUpdate = true;
 
   var loader = new THREE.TextureLoader();
   var texture = loader.load("../textures/penta.png");
-  var material = new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide});
+  var material = new THREE.MeshBasicMaterial({map:texture); **/
+  
+  material.side = THREE.DoubleSide;
   var torso = new THREE.Mesh(torso, material);
   scene.add(torso);
 
@@ -132,7 +102,7 @@ torso.uvsNeedUpdate = true;
 
 }
 
-function createHead(material){
+function createHead(material,scene){
 
   //head
   var head = new THREE.Geometry();
@@ -165,7 +135,7 @@ function createHead(material){
 
 }
 
-function createFLLeg(material){
+function createFLLeg(material,scene){
 
   //front left leg
   var FLUpLeg = new THREE.Geometry();
@@ -246,7 +216,7 @@ function createFLLeg(material){
 
 }
 
-function createFRLeg(material){
+function createFRLeg(material,scene){
 
 //front right leg
 var FRUpLeg = new THREE.Geometry();
@@ -329,7 +299,7 @@ FRFoot.add(createAxes(10));
 
 
 //BLLeg
-function createBLLeg(material) {
+function createBLLeg(material,scene) {
 
 var pi = Math.PI;
 var r45 = (45 * pi) /180;
@@ -432,7 +402,7 @@ RLToes_obj.add(createAxes(10));
 }
 
 //BRLeg
-function createBRLeg(material){
+function createBRLeg(material,scene){
 
 var pi = Math.PI
 var r45 = (45 * pi)/180
@@ -531,7 +501,7 @@ RRToes_obj.add(createAxes(10));
 
 }
 
-function createEyes(material) {
+function createEyes(material,scene) {
 
 var pi = Math.PI
 var r30 = (30 * pi)/180
@@ -591,14 +561,14 @@ scene.add(RightEye_obj);
 
 
 //create frog
-function createFrog(material,eyes_material) {
-createTorso();
-createHead(material);
-createFLLeg(material);
-createFRLeg(material);
-createBLLeg(material);
-createBRLeg(material);
-createEyes(eyes_material);
+function createFrog(material,eyes_material,torso_material,scene) {
+createTorso(torso_material,scene);
+createHead(material,scene);
+createFLLeg(material,scene);
+createFRLeg(material,scene);
+createBLLeg(material,scene);
+createBRLeg(material,scene);
+createEyes(eyes_material,scene);
 
 
 
