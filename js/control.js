@@ -1,10 +1,10 @@
 var FilledMode = true;
+var BasicMode = true;
 
 createFilledMode();
 
 
 document.onkeydown = handleKeyDown;
-document.onkeyup = handleKeyUp;
 
 
 function handleKeyDown(event){
@@ -21,6 +21,22 @@ else {
      FilledMode = true;
 }
         break;
+
+    case 73:
+		if(BasicMode == true && FilledMode == false){
+	createBasicMode();
+    BasicMode = false;
+}else {
+
+ createLightingMode();
+ BasicMode = true;
+ FilledMode = false;
+}
+
+break;
+
+
+
 }
 
 
