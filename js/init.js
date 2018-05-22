@@ -31,6 +31,7 @@ controls.update();
 
 function init(scene){
 
+render(scene);
 
 var controls = new THREE.TrackballControls(camera);
 controls.addEventListener('change', render);

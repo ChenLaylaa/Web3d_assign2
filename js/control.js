@@ -1,7 +1,7 @@
 var FilledMode = true;
 var BasicMode = true;
 
-createLightingMode();
+createFilledMode();
 
 
 document.onkeydown = handleKeyDown;

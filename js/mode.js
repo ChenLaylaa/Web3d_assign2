@@ -14,9 +14,9 @@ createPond(pond_material,filled_scene);
 function createFrameMode() {
 var pond_material = new THREE.MeshBasicMaterial( { color:0x0000ff } ); 
 var frame_scene = new THREE.Scene();
-var wir_torso_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireLinewidth:100});
-var wir_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireLinewidth:200});
-var wir_eyes_material = new THREE.MeshBasicMaterial({color:0x000000,wireframe:true,wireLinewidth:100});
+var wir_torso_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireframeLinewidth:100});
+var wir_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireframeLinewidth:200});
+var wir_eyes_material = new THREE.MeshBasicMaterial({color:0x000000,wireframe:true,wireframeLinewidth:100});
 init(frame_scene);
 createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene);
 createPond(pond_material,frame_scene);
