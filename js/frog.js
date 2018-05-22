@@ -1,5 +1,7 @@
+"use strict"
 
 
+<<<<<<< HEAD
 "use strict";
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -38,6 +40,9 @@ function animate() {
 }
 
 function createTorso(){
+=======
+function createTorso(material,scene){
+>>>>>>> ca20b990bab16c2ab35fbf6265414e4ea2623e98
 
   //torso
   var torso = new THREE.Geometry();
@@ -69,10 +74,72 @@ function createTorso(){
   torso.faces.push(new THREE.Face3(3,4,6));
   torso.faces.push(new THREE.Face3(0,4,6));
 
-  var material = new THREE.MeshBasicMaterial({color:0x00ff00});
-  var torso = new THREE.Mesh(torso, material);
+
+
+
+
+
+  //UV coordinates for texture mapping
+/* **
+ var UVs = [
+	new THREE.Vector2(0,0.5),
+    new THREE.Vector2(0.5-Math.cos(r72)*0.5,Math.sin(r72)*0.5+0.5),
+	new THREE.Vector2(0.5+Math.cos(r36)*0.5,Math.sin(r36)*0.5+0.5),
+	new THREE.Vector2(0.5+Math.cos(r36)*0.5,0.5-Math.sin(r36)*0.5),
+    new THREE.Vector2(0.5-Math.cos(r72)*0.5,0.5-Math.sin(r72)*0.5),
+	new THREE.Vector2(0.5,0.5)
+];**/
+
+/* **
+ var UVs = [
+	new THREE.Vector2(0,0.5),
+    new THREE.Vector2(0.34,0.02),
+	new THREE.Vector2(0.91,0.20),
+	new THREE.Vector2(0.905,0.8),
+    new THREE.Vector2(0.34,0.98),
+	new THREE.Vector2(0.5,0.5)
+];
+**/
+
+
+
+ //set torso UV coordinates
+/* **
+var a = new Array(UVs[0],UVs[1],UVs[5]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[1],UVs[5],UVs[2]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[2],UVs[5],UVs[3]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[3],UVs[5],UVs[4]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[4],UVs[5],UVs[0]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[0],UVs[1],UVs[5]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[1],UVs[5],UVs[2]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[2],UVs[5],UVs[3]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[3],UVs[5],UVs[4]);
+torso.faceVertexUvs[0].push(a);
+a = new Array(UVs[4],UVs[5],UVs[0]);
+torso.faceVertexUvs[0].push(a);
+
+torso.uvsNeedUpdate = true;
+
+  
+
+  var loader = new THREE.TextureLoader();
+  var texture = loader.load("../textures/penta.png");
+  var material = new THREE.MeshBasicMaterial({map:texture); **/
+  
   material.side = THREE.DoubleSide;
+<<<<<<< HEAD
  //material.wireframe = true;
+=======
+  var torso = new THREE.Mesh(torso, material);
+>>>>>>> ca20b990bab16c2ab35fbf6265414e4ea2623e98
   scene.add(torso);
 
   var axes = createAxes(10);
@@ -80,7 +147,7 @@ function createTorso(){
 
 }
 
-function createHead(){
+function createHead(material,scene){
 
   //head
   var head = new THREE.Geometry();
@@ -101,7 +168,6 @@ function createHead(){
   head.faces.push(new THREE.Face3(3,5,2));
   head.faces.push(new THREE.Face3(0,1,5));
 
-  var material = new THREE.MeshBasicMaterial({color:0x00ff00});
   var head = new THREE.Mesh(head, material);
   material.side = THREE.DoubleSide;
 
@@ -116,7 +182,7 @@ function createHead(){
 
 }
 
-function createFLLeg(){
+function createFLLeg(material,scene){
 
 
 
@@ -180,7 +246,6 @@ function createFLLeg(){
   //FLHip.name = "FLHip";
   //FLHip.rotation.z = Math.PI / 6;
 
-  var material = new THREE.MeshBasicMaterial({color:0x00ff00});
   var FLUpLeg = new THREE.Mesh(FLUpLeg, material);
   var FLLowLeg = new THREE.Mesh(FLLowLeg, material);
   var FLFoot= new THREE.Mesh( FLFoot,  material);
@@ -249,7 +314,7 @@ function handleKeyDown(event)
 }
 }
 
-function createFRLeg(){
+function createFRLeg(material,scene){
 
 //front right leg
 var FRUpLeg = new THREE.Geometry();
@@ -303,7 +368,6 @@ FRFoot.faces.push( new THREE.Face3( 0, 1, 2 ) );
 FRFoot.computeFaceNormals();
 
 
-var material = new THREE.MeshBasicMaterial({color:0x00ff00});
 var FRUpLeg = new THREE.Mesh(FRUpLeg, material);
 var FRLowLeg = new THREE.Mesh(FRLowLeg, material);
 var FRFoot= new THREE.Mesh( FRFoot,  material);
@@ -373,7 +437,7 @@ case 39:
 
 
 //BLLeg
-function createBLLeg() {
+function createBLLeg(material,scene) {
 
 var pi = Math.PI;
 var r45 = (45 * pi) /180;
@@ -444,7 +508,6 @@ RLToes.vertices.push(new THREE.Vector3(0.5,0,-0.25));
 RLToes.faces.push(new THREE.Face3(0,1,2));
 
 
-var material = new THREE.MeshBasicMaterial({color:0x00ff00});
 var RLUpLeg_obj = new THREE.Mesh(RLUpLeg, material);
 var RLLowLeg_obj = new THREE.Mesh(RLLowLeg, material);
 var RLFoot_obj = new THREE.Mesh(RLFoot,material);
@@ -512,7 +575,7 @@ scene.add(RLTMT);
 }
 
 //BRLeg
-function createBRLeg(){
+function createBRLeg(material,scene){
 
 var pi = Math.PI
 var r45 = (45 * pi)/180
@@ -580,7 +643,12 @@ RRToes.vertices.push(new THREE.Vector3(0.5,0,-0.25));
 
 RRToes.faces.push(new THREE.Face3(0,1,2));
 
+<<<<<<< HEAD
 var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+=======
+
+
+>>>>>>> ca20b990bab16c2ab35fbf6265414e4ea2623e98
 var RRUpLeg_obj = new THREE.Mesh(RRUpLeg, material);
 var RRLowLeg_obj = new THREE.Mesh(RRLowLeg, material);
 var RRFoot_obj = new THREE.Mesh(RRFoot, material);
@@ -644,7 +712,11 @@ scene.add(RRTMT);
 
 }
 
+<<<<<<< HEAD
 function createEyes(){
+=======
+function createEyes(material,scene) {
+>>>>>>> ca20b990bab16c2ab35fbf6265414e4ea2623e98
 
 var pi = Math.PI
 var r30 = (30 * pi)/180
@@ -686,7 +758,11 @@ RightEye.faces.push(new THREE.Face3(2,3,5));
 RightEye.faces.push(new THREE.Face3(0,3,5));
 
 
+<<<<<<< HEAD
 var material = new THREE.MeshBasicMaterial({color: 0x000000});
+=======
+
+>>>>>>> ca20b990bab16c2ab35fbf6265414e4ea2623e98
 var LeftEye_obj = new THREE.Mesh(LeftEye,material)
 var RightEye_obj = new THREE.Mesh(RightEye,material)
 
@@ -700,4 +776,21 @@ scene.add(LeftEye_obj);
 scene.add(RightEye_obj);
 }
 
+<<<<<<< HEAD
 scene.add(createAxes(10));
+=======
+
+//create frog
+function createFrog(material,eyes_material,torso_material,scene) {
+createTorso(torso_material,scene);
+createHead(material,scene);
+createFLLeg(material,scene);
+createFRLeg(material,scene);
+createBLLeg(material,scene);
+createBRLeg(material,scene);
+createEyes(eyes_material,scene);
+
+
+
+}
+>>>>>>> ca20b990bab16c2ab35fbf6265414e4ea2623e98
