@@ -22,7 +22,7 @@ else {
 }
         break;
 
-    case 73:
+    case 76:
 		if(BasicMode == true && FilledMode == false){
 	createBasicMode();
     BasicMode = false;
