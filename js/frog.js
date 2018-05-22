@@ -39,7 +39,7 @@ function createTorso(material,scene){
 
 
   //UV coordinates for texture mapping
-/* **
+
  var UVs = [
 	new THREE.Vector2(0,0.5),
     new THREE.Vector2(0.5-Math.cos(r72)*0.5,Math.sin(r72)*0.5+0.5),
@@ -47,7 +47,7 @@ function createTorso(material,scene){
 	new THREE.Vector2(0.5+Math.cos(r36)*0.5,0.5-Math.sin(r36)*0.5),
     new THREE.Vector2(0.5-Math.cos(r72)*0.5,0.5-Math.sin(r72)*0.5),
 	new THREE.Vector2(0.5,0.5)
-];**/
+];
 
 /* **
  var UVs = [
@@ -63,7 +63,7 @@ function createTorso(material,scene){
 
 
  //set torso UV coordinates
-/* **
+
 var a = new Array(UVs[0],UVs[1],UVs[5]);
 torso.faceVertexUvs[0].push(a);
 a = new Array(UVs[1],UVs[5],UVs[2]);
@@ -89,7 +89,7 @@ torso.uvsNeedUpdate = true;
 
 
 
-  var loader = new THREE.TextureLoader();
+/*  var loader = new THREE.TextureLoader();
   var texture = loader.load("../textures/penta.png");
   var material = new THREE.MeshBasicMaterial({map:texture); **/
 
