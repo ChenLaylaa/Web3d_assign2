@@ -8,9 +8,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x404040, 1);
 document.body.appendChild(renderer.domElement);
 
-function createScene(scene){
- scene = new THREE.Scene();
-}
 
 
 //createFilledMode();
@@ -31,18 +28,19 @@ controls.update();
 
 function init(scene){
 
-render(scene);
+
+render();
 
 var controls = new THREE.TrackballControls(camera);
 controls.addEventListener('change', render);
 animate();
 
-function render(scene) {
+function render() {
     renderer.render(scene, camera);
 }
 
 function animate() {
-    render(scene);
+    render();
     requestAnimationFrame(animate);
     controls.update();
 }
