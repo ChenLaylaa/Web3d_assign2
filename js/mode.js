@@ -4,7 +4,7 @@ function createFilledMode(){
 
 
 var torso_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('../textures/penta.png')});
-var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } ); 
+var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 var filled_scene = new THREE.Scene();
 //var torso_material = new THREE.MeshBasicMaterial({color:0x00ff00});
 var material = new THREE.MeshBasicMaterial({color:0x00ff00});
@@ -17,7 +17,7 @@ createPond(pond_material,filled_scene);
 
 //create a Frame Mode frog
 function createFrameMode() {
-var pond_material = new THREE.MeshBasicMaterial( { color:0x0000ff } ); 
+var pond_material = new THREE.MeshBasicMaterial( { color:0x0000ff } );
 var frame_scene = new THREE.Scene();
 var wir_torso_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireframeLinewidth:100});
 var wir_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireframeLinewidth:200});
@@ -29,7 +29,7 @@ createPond(pond_material,frame_scene);
 
 //create a basic mode frog
 function createBasicMode(){
-var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } ); 
+var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 var basic_scene = new THREE.Scene();
 var torso_material = new THREE.MeshBasicMaterial({color:0x00ff00});
 var material = new THREE.MeshBasicMaterial({color:0x00ff00});
@@ -42,7 +42,7 @@ createPond(pond_material,basic_scene);
 
 //TODO lighting material frog
 function createLightingMode(){
-var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } ); 
+var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 var lighting_scene = new THREE.Scene();
 var lam_torso_material = new THREE.MeshLambertMaterial({color:0x00ff00});
 var lam_material = new THREE.MeshLambertMaterial({color:0xff9966});
@@ -56,3 +56,51 @@ createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene);
 createPond(pond_material,lighting_scene);
 
 }
+
+//Frog axes
+function hideAxes(){
+
+  var torso_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('../textures/penta.png')});
+  var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+  var scene = new THREE.Scene();
+  //var torso_material = new THREE.MeshBasicMaterial({color:0x00ff00});
+  var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+  var eyes_material = new THREE.MeshBasicMaterial({color:0x000000});
+  init(scene)
+  createFrog(material,eyes_material,torso_material,scene);
+  createPond(pond_material,scene);
+
+  function hideAxes(object)
+  {
+    if (object.name == "axes")
+      object.visible = false;
+  };
+
+  scene.traverse(hideAxes);
+
+
+};
+
+
+function createShowAxes(){
+
+  var torso_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('../textures/penta.png')});
+  var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+  var scene = new THREE.Scene();
+  //var torso_material = new THREE.MeshBasicMaterial({color:0x00ff00});
+  var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+  var eyes_material = new THREE.MeshBasicMaterial({color:0x000000});
+  init(scene)
+  createFrog(material,eyes_material,torso_material,scene);
+  createPond(pond_material,scene);
+
+  function showAxes(object)
+  {
+    if (object.name == "axes")
+      object.visible = true;
+  };
+
+  scene.traverse(showAxes);
+
+
+};

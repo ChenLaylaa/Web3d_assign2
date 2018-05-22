@@ -214,6 +214,31 @@ function createFLLeg(material,scene){
   FLLowLeg.add(createAxes(10));
   FLFoot.add(createAxes(10));
 
+
+  var FLHip = new THREE.Object3D();
+  FLHip.name = "FLHip";
+  FLHip.add(FLUpLeg);
+  scene.add(FLHip);
+  //FLHip.add(createAxes(10));
+
+  var FLKnee = new THREE.Object3D();
+  FLKnee.name = "FLKnee";
+
+
+  FLKnee.add(FLHip);
+  FLKnee.add(FLLowLeg);
+
+  scene.add(FLKnee);
+  //FLKnee.add(createAxes(10));
+
+  var FLAnkle = new THREE.Object3D();
+  FLAnkle.name = "FLAnkle";
+
+  FLAnkle.add(FLKnee);
+  FLAnkle.add(FLFoot);
+
+  scene.add(FLAnkle);
+  //FLAnkle.add(createAxes(10));
 }
 
 function createFRLeg(material,scene){
@@ -294,6 +319,31 @@ scene.add(FRFoot);
 FRUpLeg.add(createAxes(10));
 FRLowLeg.add(createAxes(10));
 FRFoot.add(createAxes(10));
+
+var FRHip = new THREE.Object3D();
+FRHip.name = "FRHip";
+FRHip.add(FRUpLeg);
+scene.add(FRHip);
+//FLHip.add(createAxes(10));
+
+var FRKnee = new THREE.Object3D();
+FRKnee.name = "FRKnee";
+
+
+FRKnee.add(FRHip);
+FRKnee.add(FRLowLeg);
+
+scene.add(FRKnee);
+//FLKnee.add(createAxes(10));
+
+var FRAnkle = new THREE.Object3D();
+FRAnkle.name = "FRAnkle";
+
+FRAnkle.add(FRKnee);
+FRAnkle.add(FRFoot);
+
+scene.add(FRAnkle);
+//FLAnkle.add(createAxes(10));
 
 }
 
@@ -399,6 +449,40 @@ RLUpLeg_obj.add(createAxes(10));
 RLLowLeg_obj.add(createAxes(10));
 RLFoot_obj.add(createAxes(10));
 RLToes_obj.add(createAxes(10));
+
+var RLHip = new THREE.Object3D();
+RLHip.name = "RLHip";
+RLHip.add(RLUpLeg_obj);
+scene.add(RLHip);
+//RLHip.add(createAxes(10));
+
+var RLKnee = new THREE.Object3D();
+RLKnee.name = "RLKnee";
+
+
+RLKnee.add(RLHip);
+RLKnee.add(RLLowLeg_obj);
+
+scene.add(RLKnee);
+//RLKnee.add(createAxes(10));
+
+var RLAnkle = new THREE.Object3D();
+RLAnkle.name = "RLAnkle";
+
+RLAnkle.add(RLKnee);
+RLAnkle.add(RLFoot_obj);
+
+scene.add(RLAnkle);
+//RLAnkle.add(createAxes(10));
+
+var RLTMT = new THREE.Object3D();
+RLTMT.name = "RLTMT";
+
+RLTMT.add(RLAnkle);
+RLTMT.add(RLToes_obj);
+
+scene.add(RLTMT);
+
 }
 
 //BRLeg
@@ -499,6 +583,40 @@ RRLowLeg_obj.add(createAxes(10));
 RRFoot_obj.add(createAxes(10));
 RRToes_obj.add(createAxes(10));
 
+var RRHip = new THREE.Object3D();
+RRHip.name = "RRHip";
+RRHip.add(RRUpLeg_obj);
+scene.add(RRHip);
+//RRHip.add(createAxes(10));
+
+var RRKnee = new THREE.Object3D();
+RRKnee.name = "RRKnee";
+
+
+RRKnee.add(RRHip);
+RRKnee.add(RRLowLeg_obj);
+
+scene.add(RRKnee);
+//RRKnee.add(createAxes(10));
+
+var RRAnkle = new THREE.Object3D();
+RRAnkle.name = "RRAnkle";
+
+RRAnkle.add(RRKnee);
+RRAnkle.add(RRFoot_obj);
+
+scene.add(RRAnkle);
+//RRAnkle.add(createAxes(10));
+
+var RRTMT = new THREE.Object3D();
+RRTMT.name = "RRTMT";
+
+RRTMT.add(RRAnkle);
+RRTMT.add(RRToes_obj);
+
+scene.add(RRTMT);
+
+
 }
 
 function createEyes(material,scene) {
@@ -569,6 +687,7 @@ createFRLeg(material,scene);
 createBLLeg(material,scene);
 createBRLeg(material,scene);
 createEyes(eyes_material,scene);
+
 
 
 

@@ -1,5 +1,6 @@
 var FilledMode = true;
 var BasicMode = true;
+var showAxes = true;
 
 createFilledMode();
 
@@ -22,7 +23,7 @@ else {
 }
         break;
 
-    case 73:
+    case 76:
 		if(BasicMode == true && FilledMode == false){
 	createBasicMode();
     BasicMode = false;
@@ -35,14 +36,21 @@ else {
 
 break;
 
+  case 88:
+  if(showAxes == true){
+    hideAxes();
+    showAxes = false;
+
+  }else{
+
+    createShowAxes();
+    showAxes = true;
+  }
+
+break;
 
 
 }
 
 
 }
-
-
-
-	
-
