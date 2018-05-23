@@ -208,8 +208,6 @@ function createFLLeg(material,scene){
   scene.add(FLLowLeg);
   scene.add(FLFoot);
 
-
-
   FLUpLeg.add(createAxes(10));
   FLLowLeg.add(createAxes(10));
   FLFoot.add(createAxes(10));

@@ -12,12 +12,12 @@ document.onkeydown = handleKeyDown;
 function handleKeyDown(event){
 
 switch (event.keyCode) {
-   
+
      case 88:
 		if(filledMode==true&&enable_axes==true&&frameMode==false&&lightingMode==false){
 		enable_axes=false;
-		createFilledMode(enable_axes);        
-} 
+		createFilledMode(enable_axes);
+}
 	else if(filledMode==true&&frameMode==false&&enable_axes==false&&lightingMode==false){
 		enable_axes=true;
 		createFilledMode(enable_axes);
@@ -35,7 +35,7 @@ switch (event.keyCode) {
 	createLightingMode(enable_axes);
 }
 
-<<<<<<< HEAD
+
 break;
 
   case 88:
@@ -52,10 +52,6 @@ break;
   }
 
 break;
-=======
-	break;
->>>>>>> 8c822e126f12c3cccd2936c4443e2174a94ae953
-
 
     case 77:
 		if(filledMode==true&&frameMode==false&&lightingMode==false){
@@ -88,7 +84,7 @@ break;
 	frameMode = false;
 	createLightingMode(enable_axes);
 }
-	
+
 	break;
 }
 
