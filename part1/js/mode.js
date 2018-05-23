@@ -72,3 +72,20 @@ object.visible = false;
 
 }
 
+
+function createHipRotationMode(enable_axes){
+
+
+var torso_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('penta.png')});
+var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+var filled_scene = new THREE.Scene();
+//var torso_material = new THREE.MeshBasicMaterial({color:0x00ff00});
+var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+var eyes_material = new THREE.MeshBasicMaterial({color:0x000000});
+init(filled_scene)
+createFrog(material,eyes_material,torso_material,filled_scene);
+createPond(pond_material,filled_scene);
+
+
+
+}

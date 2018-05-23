@@ -100,6 +100,7 @@ torso.uvsNeedUpdate = true;
   var axes = createAxes(10);
   torso.add(axes);
 
+
 }
 
 function createHead(material,scene){
@@ -237,6 +238,9 @@ function createFLLeg(material,scene){
 
   scene.add(FLAnkle);
   //FLAnkle.add(createAxes(10));
+
+
+
 }
 
 function createFRLeg(material,scene){
