@@ -1,7 +1,7 @@
 "use strict"
 
 
-function createTorso(material,scene){
+function createTorso(material,scene,x,z){
 
   //torso
   var torso = new THREE.Geometry();
@@ -95,14 +95,18 @@ torso.uvsNeedUpdate = true;
 
   material.side = THREE.DoubleSide;
   var torso = new THREE.Mesh(torso, material);
+
+   
+  torso.position.set(0+x,0,0+z);
+
+
   scene.add(torso);
 
   var axes = createAxes(10);
   torso.add(axes);
-
 }
 
-function createHead(material,scene){
+function createHead(material,scene,x,z){
 
   //head
   var head = new THREE.Geometry();
@@ -131,11 +135,11 @@ function createHead(material,scene){
   var axes = createAxes(10);
   head.add(axes);
 
-  head.position.set(1.309, 0, 0);
+  head.position.set(1.309+x, 0, 0+z);
 
 }
 
-function createFLLeg(material,scene){
+function createFLLeg(material,scene,x,z){
 
   //front left leg
   var FLUpLeg = new THREE.Geometry();
@@ -194,9 +198,9 @@ function createFLLeg(material,scene){
   var FLFoot= new THREE.Mesh( FLFoot,  material);
 
 
-  FLUpLeg.position.set(1.159, -0.35, -0.588);
-  FLLowLeg.position.set(2, -0.70, -0.588);
-  FLFoot.position.set(2.5, -0.70,-0.588);
+  FLUpLeg.position.set(1.159+x, -0.35, -0.588+z);
+  FLLowLeg.position.set(2+x, -0.70, -0.588+z);
+  FLFoot.position.set(2.5+x, -0.70,-0.588+z);
 
 
   FLUpLeg.rotation.z = -0.785;
@@ -241,7 +245,7 @@ function createFLLeg(material,scene){
   //FLAnkle.add(createAxes(10));
 }
 
-function createFRLeg(material,scene){
+function createFRLeg(material,scene,x,z){
 
 //front right leg
 var FRUpLeg = new THREE.Geometry();
@@ -300,9 +304,9 @@ var FRLowLeg = new THREE.Mesh(FRLowLeg, material);
 var FRFoot= new THREE.Mesh( FRFoot,  material);
 
 
-FRUpLeg.position.set(1.159, -0.35, 0.588);
-FRLowLeg.position.set(2, -0.70, 0.588);
-FRFoot.position.set(2.5, -0.70, 0.588);
+FRUpLeg.position.set(1.159+x, -0.35, 0.588+z);
+FRLowLeg.position.set(2+x, -0.70, 0.588+z);
+FRFoot.position.set(2.5+x, -0.70, 0.588+z);
 
 
 FRUpLeg.rotation.z = -0.785;
@@ -349,7 +353,7 @@ scene.add(FRAnkle);
 
 
 //BLLeg
-function createBLLeg(material,scene) {
+function createBLLeg(material,scene,x,z) {
 
 var pi = Math.PI;
 var r45 = (45 * pi) /180;
@@ -425,10 +429,10 @@ var RLLowLeg_obj = new THREE.Mesh(RLLowLeg, material);
 var RLFoot_obj = new THREE.Mesh(RLFoot,material);
 var RLToes_obj = new THREE.Mesh(RLToes,material);
 
-RLUpLeg_obj.position.set(-1, 0, -0.5);
-RLLowLeg_obj.position.set(-1, -Math.cos(r45)*0.5, -1+Math.cos(r45)*0.5);
-RLFoot_obj.position.set(-1,-Math.cos(r45),-1.5+Math.cos(r45));
-RLToes_obj.position.set(-1,-Math.cos(r45),-2+Math.cos(r45));
+RLUpLeg_obj.position.set(-1+x, 0, -0.5+z);
+RLLowLeg_obj.position.set(-1+x, -Math.cos(r45)*0.5, -1+Math.cos(r45)*0.5+z);
+RLFoot_obj.position.set(-1+x,-Math.cos(r45),-1.5+Math.cos(r45)+z);
+RLToes_obj.position.set(-1+x,-Math.cos(r45),-2+Math.cos(r45)+z);
 
 
 
@@ -486,7 +490,7 @@ scene.add(RLTMT);
 }
 
 //BRLeg
-function createBRLeg(material,scene){
+function createBRLeg(material,scene,x,z){
 
 var pi = Math.PI
 var r45 = (45 * pi)/180
@@ -564,10 +568,10 @@ var RRToes_obj = new THREE.Mesh(RRToes, material);
 
 material.side = THREE.DoubleSide;
 
-RRUpLeg_obj.position.set(-1,0,0.5);
-RRLowLeg_obj.position.set(-1,-Math.cos(r45)*0.5,1-Math.cos(r45)*0.5);
-RRFoot_obj.position.set(-1,-Math.cos(r45),1.5-Math.cos(r45));
-RRToes_obj.position.set(-1,-Math.cos(r45),2-Math.cos(r45));
+RRUpLeg_obj.position.set(-1+x,0,0.5+z);
+RRLowLeg_obj.position.set(-1+x,-Math.cos(r45)*0.5,1-Math.cos(r45)*0.5+z);
+RRFoot_obj.position.set(-1+x,-Math.cos(r45),1.5-Math.cos(r45)+z);
+RRToes_obj.position.set(-1+x,-Math.cos(r45),2-Math.cos(r45)+z);
 
 RRUpLeg_obj.rotation.y = pi/2;
 RRLowLeg_obj.rotation.y = pi/2;
@@ -619,7 +623,7 @@ scene.add(RRTMT);
 
 }
 
-function createEyes(material,scene) {
+function createEyes(material,scene,x,z) {
 
 var pi = Math.PI
 var r30 = (30 * pi)/180
@@ -665,8 +669,8 @@ RightEye.faces.push(new THREE.Face3(0,3,5));
 var LeftEye_obj = new THREE.Mesh(LeftEye,material)
 var RightEye_obj = new THREE.Mesh(RightEye,material)
 
-LeftEye_obj.position.set(Math.cos(r30)+0.75,0,-0.19)
-RightEye_obj.position.set(Math.cos(r30)+0.75,0,0.19)
+LeftEye_obj.position.set(Math.cos(r30)+0.75+x,0,-0.19+z)
+RightEye_obj.position.set(Math.cos(r30)+0.75+x,0,0.19+z)
 
 material.side = THREE.DoubleSide;
 
@@ -679,14 +683,14 @@ scene.add(RightEye_obj);
 
 
 //create frog
-function createFrog(material,eyes_material,torso_material,scene) {
-createTorso(torso_material,scene);
-createHead(material,scene);
-createFLLeg(material,scene);
-createFRLeg(material,scene);
-createBLLeg(material,scene);
-createBRLeg(material,scene);
-createEyes(eyes_material,scene);
+function createFrog(material,eyes_material,torso_material,scene,x,z) {
+createTorso(torso_material,scene,x,z);
+createHead(material,scene,x,z);
+createFLLeg(material,scene,x,z);
+createFRLeg(material,scene,x,z);
+createBLLeg(material,scene,x,z);
+createBRLeg(material,scene,x,z);
+createEyes(eyes_material,scene,x,z);
 
 
 

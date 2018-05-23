@@ -10,7 +10,11 @@ var filled_scene = new THREE.Scene();
 var material = new THREE.MeshBasicMaterial({color:0x00ff00});
 var eyes_material = new THREE.MeshBasicMaterial({color:0x000000});
 init(filled_scene)
-createFrog(material,eyes_material,torso_material,filled_scene);
+createFrog(material,eyes_material,torso_material,filled_scene,0,0);
+createFrog(material,eyes_material,torso_material,filled_scene,5,5);
+createFrog(material,eyes_material,torso_material,filled_scene,-5,10);
+createFrog(material,eyes_material,torso_material,filled_scene,0,15);
+createFrog(material,eyes_material,torso_material,filled_scene,-5,-5);
 createPond(pond_material,filled_scene);
 
 if(enable_axes==false){
@@ -28,7 +32,11 @@ var wir_torso_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:t
 var wir_material = new THREE.MeshBasicMaterial({color:0xffd700,wireframe:true,wireframeLinewidth:200});
 var wir_eyes_material = new THREE.MeshBasicMaterial({color:0x000000,wireframe:true,wireframeLinewidth:100});
 init(frame_scene);
-createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene);
+createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene,0,0);
+createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene,5,5);
+createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene,-5,10);
+createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene,0,15);
+createFrog(wir_material,wir_eyes_material,wir_torso_material,frame_scene,-5,-5);
 createPond(pond_material,frame_scene);
 
 if(enable_axes==false){
@@ -51,7 +59,11 @@ init(lighting_scene);
 //light.position.set(0.02,0.05,0.06);
 var light = new THREE.AmbientLight(0xff9966,0.5);
 lighting_scene.add(light);
-createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene);
+createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene,0,0);
+createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene,5,5);
+createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene,-5,10);
+createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene,0,15);
+createFrog(lam_material,lam_eyes_material,lam_torso_material,lighting_scene,-5,-5);
 createPond(pond_material,lighting_scene);
 
 if(enable_axes==false){
