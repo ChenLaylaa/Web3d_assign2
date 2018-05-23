@@ -3,7 +3,7 @@
 function createFilledMode(enable_axes){
 
 
-var torso_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('../textures/penta.png')});
+var torso_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('penta.png')});
 var pond_material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 var filled_scene = new THREE.Scene();
 //var torso_material = new THREE.MeshBasicMaterial({color:0x00ff00});
