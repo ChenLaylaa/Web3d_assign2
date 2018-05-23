@@ -35,7 +35,26 @@ switch (event.keyCode) {
 	createLightingMode(enable_axes);
 }
 
+<<<<<<< HEAD
+break;
+
+  case 88:
+  if(showAxes == true){
+    hideAxes();
+    showAxes = false;
+
+
+  }else{
+
+    createShowAxes();
+    showAxes = true;
+
+  }
+
+break;
+=======
 	break;
+>>>>>>> 8c822e126f12c3cccd2936c4443e2174a94ae953
 
 
     case 77:
@@ -72,6 +91,7 @@ switch (event.keyCode) {
 	
 	break;
 }
+
 
 
 }
