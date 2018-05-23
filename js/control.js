@@ -41,16 +41,19 @@ break;
     hideAxes();
     showAxes = false;
 
+
   }else{
 
     createShowAxes();
     showAxes = true;
+
   }
 
 break;
 
 
 }
+
 
 
 }
