@@ -1,7 +1,7 @@
 "use strict"
 
 
-function createTorso(material,scene){
+function createTorso(material){
 
   //torso
   var torso = new THREE.Geometry();
@@ -49,16 +49,6 @@ function createTorso(material,scene){
 	new THREE.Vector2(0.5,0.5)
 ];
 
-/* **
- var UVs = [
-	new THREE.Vector2(0,0.5),
-    new THREE.Vector2(0.34,0.02),
-	new THREE.Vector2(0.91,0.20),
-	new THREE.Vector2(0.905,0.8),
-    new THREE.Vector2(0.34,0.98),
-	new THREE.Vector2(0.5,0.5)
-];
-**/
 
 
 
@@ -89,20 +79,16 @@ torso.uvsNeedUpdate = true;
 
 
 
-/*  var loader = new THREE.TextureLoader();
-  var texture = loader.load("../textures/penta.png");
-  var material = new THREE.MeshBasicMaterial({map:texture); **/
 
   material.side = THREE.DoubleSide;
   var torso = new THREE.Mesh(torso, material);
-  scene.add(torso);
 
   var axes = createAxes(10);
   torso.add(axes);
-
+  return torso;
 }
 
-function createHead(material,scene){
+function createHead(material){
 
   //head
   var head = new THREE.Geometry();
@@ -126,18 +112,26 @@ function createHead(material,scene){
   var head = new THREE.Mesh(head, material);
   material.side = THREE.DoubleSide;
 
-  scene.add(head);
+ // scene.add(head);
 
   var axes = createAxes(10);
   head.add(axes);
 
   head.position.set(1.309, 0, 0);
+  return head;
+}
+
+//FLHip
+function createFLHip(){
+	var FLHip = new THREE.Object3D();
+	  FLHip.name = "FLHip";
+    return FLHip;
 
 }
 
-function createFLLeg(material,scene){
-
-  //front left leg
+//FLUpLeg
+function createFLUpLeg(material){
+//front left leg
   var FLUpLeg = new THREE.Geometry();
   FLUpLeg.vertices.push(new THREE.Vector3(-0.5,0,0));
   FLUpLeg.vertices.push(new THREE.Vector3(0,0,0.25));
@@ -155,8 +149,25 @@ function createFLLeg(material,scene){
   FLUpLeg.faces.push(new THREE.Face3(4,3,2));
   FLUpLeg.faces.push(new THREE.Face3(3,5,2));
   FLUpLeg.faces.push(new THREE.Face3(0,1,5));
+var FLUpLeg = new THREE.Mesh(FLUpLeg, material);
+FLUpLeg.position.set(1.159, -0.35, -0.588);
+FLUpLeg.rotation.z = -Math.PI/4;
+ material.side = THREE.DoubleSide;
+FLUpLeg.add(createAxes(10));
+return FLUpLeg;
 
-  //front left knee
+}
+
+//FLKnee
+function createFLKnee(){
+var FLKnee = new THREE.Object3D();
+  FLKnee.name = "FLKnee";
+ return FLKnee;
+}
+
+//FLLowLeg
+function createFLLowLeg(material){
+  var r45 = (45 * Math.PI)/180;
   var FLLowLeg = new THREE.Geometry();
   FLLowLeg.vertices.push(new THREE.Vector3(-0.5,0,0));
   FLLowLeg.vertices.push(new THREE.Vector3(0,0,0.25));
@@ -165,7 +176,6 @@ function createFLLeg(material,scene){
   FLLowLeg.vertices.push(new THREE.Vector3(0,0.25,0));
   FLLowLeg.vertices.push(new THREE.Vector3(0,-0.25,0));
 
-  //faces for FLLowLeg
   FLLowLeg.faces.push(new THREE.Face3(0,1,4));
   FLLowLeg.faces.push(new THREE.Face3(4,1,2));
   FLLowLeg.faces.push(new THREE.Face3(1,5,2));
@@ -174,9 +184,24 @@ function createFLLeg(material,scene){
   FLLowLeg.faces.push(new THREE.Face3(4,3,2));
   FLLowLeg.faces.push(new THREE.Face3(3,5,2));
   FLLowLeg.faces.push(new THREE.Face3(0,1,5));
+ var FLLowLeg = new THREE.Mesh(FLLowLeg, material);
+material.side = THREE.DoubleSide;
+FLLowLeg.rotation.z = Math.PI/4;
+FLLowLeg.position.set(0.5+0.5*Math.cos(r45), Math.cos(r45)*0.5, 0);
+FLLowLeg.add(createAxes(10));
+return FLLowLeg;
+}
 
-  //front left foot
-  var FLFoot = new THREE.Geometry();
+//FLAnkle
+function createFLAnkle(){
+var FLAnkle = new THREE.Object3D();
+  FLAnkle.name = "FLAnkle";
+return FLAnkle;
+}
+
+//FLFoot
+function createFLFoot(material){
+ var FLFoot = new THREE.Geometry();
   var v1 = new THREE.Vector3(0,0,0);
   var v2 = new THREE.Vector3(0.5,0,0.25);
   var v3 = new THREE.Vector3(0.5,0,-0.25);
@@ -187,63 +212,22 @@ function createFLLeg(material,scene){
 
   FLFoot.faces.push( new THREE.Face3( 0, 1, 2 ) );
   FLFoot.computeFaceNormals();
-
-
-  var FLUpLeg = new THREE.Mesh(FLUpLeg, material);
-  var FLLowLeg = new THREE.Mesh(FLLowLeg, material);
-  var FLFoot= new THREE.Mesh( FLFoot,  material);
-
-
-  FLUpLeg.position.set(1.159, -0.35, -0.588);
-  FLLowLeg.position.set(2, -0.70, -0.588);
-  FLFoot.position.set(2.5, -0.70,-0.588);
-
-
-  FLUpLeg.rotation.z = -0.785;
-
-  material.side = THREE.DoubleSide;
-  //material.wireframe = true;
-
-  scene.add(FLUpLeg);
-  scene.add(FLLowLeg);
-  scene.add(FLFoot);
-
-
-
-  FLUpLeg.add(createAxes(10));
-  FLLowLeg.add(createAxes(10));
-  FLFoot.add(createAxes(10));
-
-
-  var FLHip = new THREE.Object3D();
-  FLHip.name = "FLHip";
-  FLHip.add(FLUpLeg);
-  scene.add(FLHip);
-  //FLHip.add(createAxes(10));
-
-  var FLKnee = new THREE.Object3D();
-  FLKnee.name = "FLKnee";
-
-
-  FLKnee.add(FLHip);
-  FLKnee.add(FLLowLeg);
-
-  scene.add(FLKnee);
-  //FLKnee.add(createAxes(10));
-
-  var FLAnkle = new THREE.Object3D();
-  FLAnkle.name = "FLAnkle";
-
-  FLAnkle.add(FLKnee);
-  FLAnkle.add(FLFoot);
-
-  scene.add(FLAnkle);
-  //FLAnkle.add(createAxes(10));
+var FLFoot= new THREE.Mesh( FLFoot,  material);
+ material.side = THREE.DoubleSide;
+FLFoot.position.set(0.5,0,0)
+FLFoot.add(createAxes(10));
+return FLFoot;
 }
 
-function createFRLeg(material,scene){
+//FRHip
+function createFRHip(){
+var FRHip = new THREE.Object3D();
+FRHip.name = "FRHip";
+return FRHip;
+}
 
-//front right leg
+//FRUpLeg
+function createFRUpLeg(material){
 var FRUpLeg = new THREE.Geometry();
 FRUpLeg.vertices.push(new THREE.Vector3(-0.5,0,0));
 FRUpLeg.vertices.push(new THREE.Vector3(0,0,0.25));
@@ -252,7 +236,6 @@ FRUpLeg.vertices.push(new THREE.Vector3(0,0,-0.25));
 FRUpLeg.vertices.push(new THREE.Vector3(0,0.25,0));
 FRUpLeg.vertices.push(new THREE.Vector3(0,-0.25,0));
 
-//faces for right leg
 FRUpLeg.faces.push(new THREE.Face3(0,1,4));
 FRUpLeg.faces.push(new THREE.Face3(4,1,2));
 FRUpLeg.faces.push(new THREE.Face3(1,5,2));
@@ -262,7 +245,24 @@ FRUpLeg.faces.push(new THREE.Face3(4,3,2));
 FRUpLeg.faces.push(new THREE.Face3(3,5,2));
 FRUpLeg.faces.push(new THREE.Face3(0,1,5));
 
-//front left knee
+var FRUpLeg = new THREE.Mesh(FRUpLeg, material);
+FRUpLeg.position.set(1.159, -0.35, 0.588);
+FRUpLeg.rotation.z = -Math.PI/4;
+material.side = THREE.DoubleSide;
+FRUpLeg.add(createAxes(10));
+return FRUpLeg;
+}
+
+//FRKnee
+function createFRKnee(){
+var FRKnee = new THREE.Object3D();
+FRKnee.name = "FRKnee";
+return FRKnee;
+}
+
+//FRLowLeg
+function createFRLowLeg(material){
+var r45 = (45 * Math.PI)/180;
 var FRLowLeg = new THREE.Geometry();
 FRLowLeg.vertices.push(new THREE.Vector3(-0.5,0,0));
 FRLowLeg.vertices.push(new THREE.Vector3(0,0,0.25));
@@ -271,7 +271,6 @@ FRLowLeg.vertices.push(new THREE.Vector3(0,0,-0.25));
 FRLowLeg.vertices.push(new THREE.Vector3(0,0.25,0));
 FRLowLeg.vertices.push(new THREE.Vector3(0,-0.25,0));
 
-//faces for FRLowLeg
 FRLowLeg.faces.push(new THREE.Face3(0,1,4));
 FRLowLeg.faces.push(new THREE.Face3(4,1,2));
 FRLowLeg.faces.push(new THREE.Face3(1,5,2));
@@ -281,7 +280,24 @@ FRLowLeg.faces.push(new THREE.Face3(4,3,2));
 FRLowLeg.faces.push(new THREE.Face3(3,5,2));
 FRLowLeg.faces.push(new THREE.Face3(0,1,5));
 
-//front left foot
+var FRLowLeg = new THREE.Mesh(FRLowLeg, material);
+FRLowLeg.rotation.z = Math.PI/4;
+FRLowLeg.position.set(0.5+0.5*Math.cos(r45), Math.cos(r45)*0.5, 0);
+material.side = THREE.DoubleSide;
+FRLowLeg.add(createAxes(10));
+return FRLowLeg;
+
+}
+
+//FRAnkle
+function createFRAnkle(){
+var FRAnkle = new THREE.Object3D();
+FRAnkle.name = "FRAnkle";
+return FRAnkle;
+}
+
+//FRFoot
+function createFRFoot(material){
 var FRFoot = new THREE.Geometry();
 var v1 = new THREE.Vector3(0,0,0);
 var v2 = new THREE.Vector3(0.5,0,0.25);
@@ -294,63 +310,23 @@ FRFoot.vertices.push(v3);
 FRFoot.faces.push( new THREE.Face3( 0, 1, 2 ) );
 FRFoot.computeFaceNormals();
 
-
-var FRUpLeg = new THREE.Mesh(FRUpLeg, material);
-var FRLowLeg = new THREE.Mesh(FRLowLeg, material);
 var FRFoot= new THREE.Mesh( FRFoot,  material);
-
-
-FRUpLeg.position.set(1.159, -0.35, 0.588);
-FRLowLeg.position.set(2, -0.70, 0.588);
-FRFoot.position.set(2.5, -0.70, 0.588);
-
-
-FRUpLeg.rotation.z = -0.785;
-
+FRFoot.position.set(0.5, 0, 0);
 material.side = THREE.DoubleSide;
-//material.wireframe = true;
-
-scene.add(FRUpLeg);
-scene.add(FRLowLeg);
-scene.add(FRFoot);
-
-
-
-FRUpLeg.add(createAxes(10));
-FRLowLeg.add(createAxes(10));
 FRFoot.add(createAxes(10));
+return FRFoot;
+}
 
-var FRHip = new THREE.Object3D();
-FRHip.name = "FRHip";
-FRHip.add(FRUpLeg);
-scene.add(FRHip);
-//FLHip.add(createAxes(10));
-
-var FRKnee = new THREE.Object3D();
-FRKnee.name = "FRKnee";
-
-
-FRKnee.add(FRHip);
-FRKnee.add(FRLowLeg);
-
-scene.add(FRKnee);
-//FLKnee.add(createAxes(10));
-
-var FRAnkle = new THREE.Object3D();
-FRAnkle.name = "FRAnkle";
-
-FRAnkle.add(FRKnee);
-FRAnkle.add(FRFoot);
-
-scene.add(FRAnkle);
-//FLAnkle.add(createAxes(10));
-
+//RLHip
+function createRLHip(){
+var RLHip = new THREE.Object3D();
+RLHip.name = "RLHip";
+return RLHip;
 }
 
 
-//BLLeg
-function createBLLeg(material,scene) {
-
+//RLUpLeg
+function createRLUpLeg(material){
 var pi = Math.PI;
 var r45 = (45 * pi) /180;
 
@@ -373,9 +349,27 @@ RLUpLeg.faces.push(new THREE.Face3(0, 1, 5));
 RLUpLeg.faces.push(new THREE.Face3(1, 2, 5));
 RLUpLeg.faces.push(new THREE.Face3(3, 2, 5));
 RLUpLeg.faces.push(new THREE.Face3(0, 3, 5));
+var RLUpLeg_obj = new THREE.Mesh(RLUpLeg, material);
+RLUpLeg_obj.position.set(-1, 0, -0.5);
+RLUpLeg_obj.rotation.y = pi/2;
+material.side = THREE.DoubleSide;
+RLUpLeg_obj.add(createAxes(10));
+return RLUpLeg_obj;
 
+}
+
+//RLKnee
+function createRLKnee(){
+var RLKnee = new THREE.Object3D();
+RLKnee.name = "RLKnee";
+return RLKnee;
+}
 
 //RLLowLeg
+function createRLLowLeg(material){
+var pi = Math.PI;
+var r45 = (45 * pi) /180;
+
 var RLLowLeg = new THREE.Geometry()
 RLLowLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
 RLLowLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
@@ -392,8 +386,24 @@ RLLowLeg.faces.push(new THREE.Face3(0, 1, 5));
 RLLowLeg.faces.push(new THREE.Face3(1, 2, 5));
 RLLowLeg.faces.push(new THREE.Face3(3, 2, 5));
 RLLowLeg.faces.push(new THREE.Face3(0, 3, 5));
+var RLLowLeg_obj = new THREE.Mesh(RLLowLeg, material);
+RLLowLeg_obj.rotation.z = -3*pi/4;
+RLLowLeg_obj.position.set(0.5-Math.cos(r45)*0.5,-Math.cos(r45)*0.5,0);
+material.side = THREE.DoubleSide;
+RLLowLeg_obj.add(createAxes(10));
+return RLLowLeg_obj;
+}
+
+//RLAnkle
+function createRLAnkle(){
+var RLAnkle = new THREE.Object3D();
+RLAnkle.name = "RLAnkle";
+return RLAnkle;
+}
 
 //RLFoot
+function createRLFoot(material){
+var r45 = (45 * Math.PI)/180;
 var RLFoot = new THREE.Geometry()
 RLFoot.vertices.push(new THREE.Vector3(-0.5, 0, 0));
 RLFoot.vertices.push(new THREE.Vector3(0, 0, 0.25));
@@ -410,8 +420,23 @@ RLFoot.faces.push(new THREE.Face3(0, 1, 5));
 RLFoot.faces.push(new THREE.Face3(1, 2, 5));
 RLFoot.faces.push(new THREE.Face3(3, 2, 5));
 RLFoot.faces.push(new THREE.Face3(0, 3, 5));
+var RLFoot_obj = new THREE.Mesh(RLFoot,material);
+RLFoot_obj.rotation.z = -Math.PI/4;
+RLFoot_obj.position.set(0.5-0.5*Math.cos(r45),Math.cos(r45)*0.5,0);
+material.side = THREE.DoubleSide;
+RLFoot_obj.add(createAxes(10));
+return RLFoot_obj;
+}
+
+//RLTMT
+function createRLTMT(){
+var RLTMT = new THREE.Object3D();
+RLTMT.name = "RLTMT";
+return RLTMT;
+}
 
 //RLToes
+function createRLToes(material){
 var RLToes = new THREE.Geometry()
 RLToes.vertices.push(new THREE.Vector3(0,0,0));
 RLToes.vertices.push(new THREE.Vector3(0.5,0,0.25));
@@ -419,80 +444,24 @@ RLToes.vertices.push(new THREE.Vector3(0.5,0,-0.25));
 
 RLToes.faces.push(new THREE.Face3(0,1,2));
 
-
-var RLUpLeg_obj = new THREE.Mesh(RLUpLeg, material);
-var RLLowLeg_obj = new THREE.Mesh(RLLowLeg, material);
-var RLFoot_obj = new THREE.Mesh(RLFoot,material);
 var RLToes_obj = new THREE.Mesh(RLToes,material);
-
-RLUpLeg_obj.position.set(-1, 0, -0.5);
-RLLowLeg_obj.position.set(-1, -Math.cos(r45)*0.5, -1+Math.cos(r45)*0.5);
-RLFoot_obj.position.set(-1,-Math.cos(r45),-1.5+Math.cos(r45));
-RLToes_obj.position.set(-1,-Math.cos(r45),-2+Math.cos(r45));
-
-
-
-RLUpLeg_obj.rotation.y = pi/2;
-RLLowLeg_obj.rotation.y = pi/2;
-RLLowLeg_obj.rotation.z = pi/2;
-RLLowLeg_obj.rotation.x = -pi/4;
-RLFoot_obj.rotation.y = pi/2;
-
+RLToes_obj.rotation.y = -Math.PI/2;
+RLToes_obj.position.set(-0.5,0,0);
 material.side = THREE.DoubleSide;
-
-scene.add(RLUpLeg_obj);
-scene.add(RLLowLeg_obj);
-scene.add(RLFoot_obj);
-scene.add(RLToes_obj);
-
-RLUpLeg_obj.add(createAxes(10));
-RLLowLeg_obj.add(createAxes(10));
-RLFoot_obj.add(createAxes(10));
 RLToes_obj.add(createAxes(10));
-
-var RLHip = new THREE.Object3D();
-RLHip.name = "RLHip";
-RLHip.add(RLUpLeg_obj);
-scene.add(RLHip);
-//RLHip.add(createAxes(10));
-
-var RLKnee = new THREE.Object3D();
-RLKnee.name = "RLKnee";
-
-
-RLKnee.add(RLHip);
-RLKnee.add(RLLowLeg_obj);
-
-scene.add(RLKnee);
-//RLKnee.add(createAxes(10));
-
-var RLAnkle = new THREE.Object3D();
-RLAnkle.name = "RLAnkle";
-
-RLAnkle.add(RLKnee);
-RLAnkle.add(RLFoot_obj);
-
-scene.add(RLAnkle);
-//RLAnkle.add(createAxes(10));
-
-var RLTMT = new THREE.Object3D();
-RLTMT.name = "RLTMT";
-
-RLTMT.add(RLAnkle);
-RLTMT.add(RLToes_obj);
-
-scene.add(RLTMT);
-
+return RLToes_obj;
 }
 
-//BRLeg
-function createBRLeg(material,scene){
-
-var pi = Math.PI
-var r45 = (45 * pi)/180
-
+//RRHip
+function createRRHip(){
+var RRHip = new THREE.Object3D();
+RRHip.name = "RRHip";
+return RRHip;
+}
 
 //RRUpLeg
+function createRRUpLeg(material){
+var r45 = (45 * Math.PI)/180;
 var RRUpLeg = new THREE.Geometry()
 RRUpLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
 RRUpLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
@@ -509,8 +478,25 @@ RRUpLeg.faces.push(new THREE.Face3(0, 1, 5));
 RRUpLeg.faces.push(new THREE.Face3(1, 2, 5));
 RRUpLeg.faces.push(new THREE.Face3(3, 2, 5));
 RRUpLeg.faces.push(new THREE.Face3(0, 3, 5));
+var RRUpLeg_obj = new THREE.Mesh(RRUpLeg, material);
+material.side = THREE.DoubleSide;
+RRUpLeg_obj.position.set(-1,0,0.5);
+RRUpLeg_obj.rotation.y = Math.PI/2;
+RRUpLeg_obj.add(createAxes(10));
+return RRUpLeg_obj;
+
+}
+
+//RRKnee
+function createRRKnee(){
+var RRKnee = new THREE.Object3D();
+RRKnee.name = "RRKnee";
+return RRKnee;
+}
 
 //RRLowLeg
+function createRRLowLeg(material){
+var r45 = (45 * Math.PI)/180;
 var RRLowLeg = new THREE.Geometry()
 RRLowLeg.vertices.push(new THREE.Vector3(-0.5, 0, 0));
 RRLowLeg.vertices.push(new THREE.Vector3(0, 0, 0.25));
@@ -527,8 +513,24 @@ RRLowLeg.faces.push(new THREE.Face3(0, 1, 5));
 RRLowLeg.faces.push(new THREE.Face3(1, 2, 5));
 RRLowLeg.faces.push(new THREE.Face3(3, 2, 5));
 RRLowLeg.faces.push(new THREE.Face3(0, 3, 5));
+var RRLowLeg_obj = new THREE.Mesh(RRLowLeg, material);
+material.side = THREE.DoubleSide;
+RRLowLeg_obj.rotation.z = -Math.PI/4;
+RRLowLeg_obj.position.set(Math.cos(r45)*0.5-0.5,-Math.cos(r45)*0.5,0);
+RRLowLeg_obj.add(createAxes(10));
+return RRLowLeg_obj;
+}
+
+//RRAnkle
+function createRRAnkle(){
+var RRAnkle = new THREE.Object3D();
+RRAnkle.name = "RRAnkle";
+return RRAnkle;
+}
 
 //RRFoot
+function createRRFoot(material){
+var r45 = (45 * Math.PI)/180;
 var RRFoot = new THREE.Geometry()
 RRFoot.vertices.push(new THREE.Vector3(-0.5, 0, 0));
 RRFoot.vertices.push(new THREE.Vector3(0, 0, 0.25));
@@ -545,86 +547,44 @@ RRFoot.faces.push(new THREE.Face3(0, 1, 5));
 RRFoot.faces.push(new THREE.Face3(1, 2, 5));
 RRFoot.faces.push(new THREE.Face3(3, 2, 5));
 RRFoot.faces.push(new THREE.Face3(0, 3, 5));
+var RRFoot_obj = new THREE.Mesh(RRFoot, material);
+material.side = THREE.DoubleSide;
+RRFoot_obj.rotation.z = Math.PI/4;
+RRFoot_obj.position.set(0.5-Math.cos(r45)*0.5,-Math.cos(r45)*0.5,0);
+RRFoot_obj.add(createAxes(10));
+return RRFoot_obj;
+}
+
+
+//RRTMT
+function createRRTMT(){
+var RRTMT = new THREE.Object3D();
+RRTMT.name = "RRTMT";
+return RRTMT;
+}
 
 //RRToes
+function createRRToes(material){
 var RRToes = new THREE.Geometry()
 RRToes.vertices.push(new THREE.Vector3(0,0,0));
 RRToes.vertices.push(new THREE.Vector3(0.5,0,0.25));
 RRToes.vertices.push(new THREE.Vector3(0.5,0,-0.25));
 
 RRToes.faces.push(new THREE.Face3(0,1,2));
-
-
-
-var RRUpLeg_obj = new THREE.Mesh(RRUpLeg, material);
-var RRLowLeg_obj = new THREE.Mesh(RRLowLeg, material);
-var RRFoot_obj = new THREE.Mesh(RRFoot, material);
 var RRToes_obj = new THREE.Mesh(RRToes, material);
-
-
 material.side = THREE.DoubleSide;
-
-RRUpLeg_obj.position.set(-1,0,0.5);
-RRLowLeg_obj.position.set(-1,-Math.cos(r45)*0.5,1-Math.cos(r45)*0.5);
-RRFoot_obj.position.set(-1,-Math.cos(r45),1.5-Math.cos(r45));
-RRToes_obj.position.set(-1,-Math.cos(r45),2-Math.cos(r45));
-
-RRUpLeg_obj.rotation.y = pi/2;
-RRLowLeg_obj.rotation.y = pi/2;
-RRLowLeg_obj.rotation.x = 3*pi/4;
-RRFoot_obj.rotation.y = pi/2;
-
-scene.add(RRUpLeg_obj);
-scene.add(RRLowLeg_obj);
-scene.add(RRFoot_obj);
-scene.add(RRToes_obj);
-RRUpLeg_obj.add(createAxes(10));
-RRLowLeg_obj.add(createAxes(10));
-RRFoot_obj.add(createAxes(10));
+RRToes_obj.rotation.y = -Math.PI/2;
+RRToes_obj.position.set(-0.5,0,0);
 RRToes_obj.add(createAxes(10));
-
-var RRHip = new THREE.Object3D();
-RRHip.name = "RRHip";
-RRHip.add(RRUpLeg_obj);
-scene.add(RRHip);
-//RRHip.add(createAxes(10));
-
-var RRKnee = new THREE.Object3D();
-RRKnee.name = "RRKnee";
-
-
-RRKnee.add(RRHip);
-RRKnee.add(RRLowLeg_obj);
-
-scene.add(RRKnee);
-//RRKnee.add(createAxes(10));
-
-var RRAnkle = new THREE.Object3D();
-RRAnkle.name = "RRAnkle";
-
-RRAnkle.add(RRKnee);
-RRAnkle.add(RRFoot_obj);
-
-scene.add(RRAnkle);
-//RRAnkle.add(createAxes(10));
-
-var RRTMT = new THREE.Object3D();
-RRTMT.name = "RRTMT";
-
-RRTMT.add(RRAnkle);
-RRTMT.add(RRToes_obj);
-
-scene.add(RRTMT);
-
-
+return RRToes_obj;
 }
 
-function createEyes(material,scene) {
+
+function createLeftEye(material) {
 
 var pi = Math.PI
 var r30 = (30 * pi)/180
 
-//LeftEye
 var LeftEye = new THREE.Geometry()
 LeftEye.vertices.push(new THREE.Vector3(0,0,0.1));
 LeftEye.vertices.push(new THREE.Vector3(-0.1,0,0));
@@ -642,7 +602,23 @@ LeftEye.faces.push(new THREE.Face3(2,1,5));
 LeftEye.faces.push(new THREE.Face3(2,3,5));
 LeftEye.faces.push(new THREE.Face3(0,3,5));
 
-//RightEye
+
+
+var LeftEye_obj = new THREE.Mesh(LeftEye,material)
+
+LeftEye_obj.position.set(0.25,0,-0.19)
+
+material.side = THREE.DoubleSide;
+
+
+return LeftEye_obj;
+
+
+}
+
+function createRightEye(material){
+var pi = Math.PI
+var r30 = (30 * pi)/180
 var RightEye = new THREE.Geometry()
 RightEye.vertices.push(new THREE.Vector3(0,0,0.1));
 RightEye.vertices.push(new THREE.Vector3(-0.1,0,0));
@@ -660,35 +636,81 @@ RightEye.faces.push(new THREE.Face3(2,1,5));
 RightEye.faces.push(new THREE.Face3(2,3,5));
 RightEye.faces.push(new THREE.Face3(0,3,5));
 
-
-
-var LeftEye_obj = new THREE.Mesh(LeftEye,material)
 var RightEye_obj = new THREE.Mesh(RightEye,material)
 
-LeftEye_obj.position.set(Math.cos(r30)+0.75,0,-0.19)
-RightEye_obj.position.set(Math.cos(r30)+0.75,0,0.19)
-
+RightEye_obj.position.set(0.25,0,0.19)
 material.side = THREE.DoubleSide;
-
-
-scene.add(LeftEye_obj);
-scene.add(RightEye_obj);
-
-
+return RightEye_obj;
 }
 
 
 //create frog
 function createFrog(material,eyes_material,torso_material,scene) {
-createTorso(torso_material,scene);
-createHead(material,scene);
-createFLLeg(material,scene);
-createFRLeg(material,scene);
-createBLLeg(material,scene);
-createBRLeg(material,scene);
-createEyes(eyes_material,scene);
+var torso = createTorso(torso_material);
+var head = createHead(material);
+var lefteye = createLeftEye(eyes_material);
+var righteye = createRightEye(eyes_material);
+var flhip = createFLHip();
+var flupleg = createFLUpLeg(material);
+var flknee = createFLKnee();
+var fllowleg = createFLLowLeg(material);
+var flankle = createFLAnkle();
+var flfoot = createFLFoot(material);
+var frhip = createFRHip();
+var frupleg = createFRUpLeg(material);
+var frknee = createFRKnee();
+var frlowleg = createFRLowLeg(material);
+var frankle = createFRAnkle();
+var frfoot = createFRFoot(material);
+var rlhip = createRLHip();
+var rlupleg = createRLUpLeg(material);
+var rlknee = createRLKnee();
+var rllowleg = createRLLowLeg(material);
+var rlankle = createRLAnkle();
+var rlfoot = createRLFoot(material);
+var rltmt = createRLTMT();
+var rltoes = createRLToes(material);
+var rrhip = createRRHip();
+var rrupleg = createRRUpLeg(material);
+var rrknee = createRRKnee();
+var rrlowleg = createRRLowLeg(material);
+var rrankle = createRRAnkle();
+var rrfoot = createRRFoot(material);
+var rrtmt = createRRTMT();
+var rrtoes = createRRToes(material);
 
-
+rrtmt.add(rrtoes);
+rrfoot.add(rrtmt);
+rrankle.add(rrfoot);
+rrlowleg.add(rrankle);
+rrknee.add(rrlowleg);
+rrupleg.add(rrknee);
+rrhip.add(rrupleg);
+rltmt.add(rltoes);
+rlfoot.add(rltmt);
+rlankle.add(rlfoot);
+rllowleg.add(rlankle);
+rlknee.add(rllowleg);
+rlupleg.add(rlknee);
+rlhip.add(rlupleg);
+frankle.add(frfoot);
+frlowleg.add(frankle);
+frknee.add(frlowleg);
+frupleg.add(frknee);
+frhip.add(frupleg);
+flankle.add(flfoot);
+fllowleg.add(flankle);
+flknee.add(fllowleg);
+flupleg.add(flknee);
+flhip.add(flupleg);
+head.add(lefteye);
+head.add(righteye);
+torso.add(head);
+torso.add(flhip);
+torso.add(frhip);
+torso.add(rlhip);
+torso.add(rrhip);
+scene.add(torso);
 
 
 }
