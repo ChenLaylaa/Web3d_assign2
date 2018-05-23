@@ -1,3 +1,5 @@
+"use strict"
+
 function createPond(material, scene){
 var pi = Math.PI;
 var r45 = (45 * pi)/180;
