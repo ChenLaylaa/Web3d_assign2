@@ -35,6 +35,7 @@ switch (event.keyCode) {
 	createLightingMode(enable_axes);
 }
 
+<<<<<<< HEAD:js/control.js
 
 break;
 
@@ -52,6 +53,10 @@ break;
   }
 
 break;
+=======
+	break;
+
+>>>>>>> 89e626d7bbc53cfa24290f29b82d3ed08e7bc4f6:part1/js/control.js
 
     case 77:
 		if(filledMode==true&&frameMode==false&&lightingMode==false){
@@ -87,7 +92,6 @@ break;
 
 	break;
 }
-
 
 
 }
