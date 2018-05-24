@@ -85,12 +85,10 @@ torso.uvsNeedUpdate = true;
 
   var axes = createAxes(10);
   torso.add(axes);
-<<<<<<< HEAD
 
 
-=======
   return torso;
->>>>>>> 242c8a8053083b64e871929f7f9217d8fc492f14
+
 }
 
 function createHead(material){
@@ -217,67 +215,13 @@ function createFLFoot(material){
 
   FLFoot.faces.push( new THREE.Face3( 0, 1, 2 ) );
   FLFoot.computeFaceNormals();
-<<<<<<< HEAD
 
-
-  var FLUpLeg = new THREE.Mesh(FLUpLeg, material);
-  var FLLowLeg = new THREE.Mesh(FLLowLeg, material);
-  var FLFoot= new THREE.Mesh( FLFoot,  material);
-
-
-  FLUpLeg.position.set(1.159, -0.35, -0.588);
-  FLLowLeg.position.set(2, -0.70, -0.588);
-  FLFoot.position.set(2.5, -0.70,-0.588);
-
-
-  FLUpLeg.rotation.z = -0.785;
-
-  material.side = THREE.DoubleSide;
-  //material.wireframe = true;
-
-  scene.add(FLUpLeg);
-  scene.add(FLLowLeg);
-  scene.add(FLFoot);
-
-  FLUpLeg.add(createAxes(10));
-  FLLowLeg.add(createAxes(10));
-  FLFoot.add(createAxes(10));
-
-
-  var FLHip = new THREE.Object3D();
-  FLHip.name = "FLHip";
-  FLHip.add(FLUpLeg);
-  scene.add(FLHip);
-  //FLHip.add(createAxes(10));
-
-  var FLKnee = new THREE.Object3D();
-  FLKnee.name = "FLKnee";
-
-
-  FLKnee.add(FLHip);
-  FLKnee.add(FLLowLeg);
-
-  scene.add(FLKnee);
-  //FLKnee.add(createAxes(10));
-
-  var FLAnkle = new THREE.Object3D();
-  FLAnkle.name = "FLAnkle";
-
-  FLAnkle.add(FLKnee);
-  FLAnkle.add(FLFoot);
-
-  scene.add(FLAnkle);
-  //FLAnkle.add(createAxes(10));
-
-
-
-=======
 var FLFoot= new THREE.Mesh( FLFoot,  material);
  material.side = THREE.DoubleSide;
 FLFoot.position.set(0.5,0,0)
 FLFoot.add(createAxes(10));
 return FLFoot;
->>>>>>> 242c8a8053083b64e871929f7f9217d8fc492f14
+
 }
 
 //FRHip
@@ -772,6 +716,9 @@ torso.add(frhip);
 torso.add(rlhip);
 torso.add(rrhip);
 scene.add(torso);
+
+
+
 
 
 }

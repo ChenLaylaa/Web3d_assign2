@@ -5,6 +5,7 @@ createFilledMode(enable_axes);
 var filledMode = true;
 var frameMode = false;
 var lightingMode = false;
+var jointMode = true;
 
 document.onkeydown = handleKeyDown;
 
